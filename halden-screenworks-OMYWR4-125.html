@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halden Screenworks — Televisions, Crafted for the Room</title>
+<meta name="description" content="Halden Screenworks designs, calibrates and installs premium home televisions and viewing spaces.">
+<style>
+  :root{
+    --ink:#2B2320;
+    --ink-soft:#5A4F49;
+    --cream:#F6F1E7;
+    --paper:#FBF8F1;
+    --copper:#B46A3B;
+    --copper-dark:#93512A;
+    --line:#E3D9C8;
+    --serif:Georgia,'Times New Roman',serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased}
+  img{max-width:100%}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+
+  /* ---------- Nav ---------- */
+  header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(251,248,241,.92);backdrop-filter:blur(8px);border-bottom:1px solid transparent;transition:border-color .3s}
+  header.scrolled{border-bottom-color:var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{font-family:var(--serif);font-size:1.35rem;letter-spacing:.02em;display:flex;align-items:center;gap:10px}
+  .logo-mark{width:26px;height:18px;border:2px solid var(--copper);border-radius:3px;position:relative;display:inline-block}
+  .logo-mark::after{content:"";position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);width:12px;height:2px;background:var(--copper)}
+  .nav-links{display:flex;gap:34px;align-items:center}
+  .nav-links a{font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);transition:color .2s}
+  .nav-links a:hover{color:var(--copper)}
+  .nav-cta{background:var(--ink);color:var(--cream);padding:11px 22px;border-radius:2px;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;transition:background .2s}
+  .nav-cta:hover{background:var(--copper-dark)}
+  .burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
+  .burger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;transition:.3s}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:150px 0 90px;background:linear-gradient(180deg,var(--cream) 0%,var(--paper) 100%)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+  .eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--copper);margin-bottom:22px;display:flex;align-items:center;gap:12px}
+  .eyebrow::before{content:"";width:34px;height:1px;background:var(--copper)}
+  h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,5vw,3.9rem);line-height:1.12;letter-spacing:-.01em;margin-bottom:24px}
+  h1 em{font-style:italic;color:var(--copper-dark)}
+  .hero p.lede{font-size:1.08rem;color:var(--ink-soft);max-width:480px;margin-bottom:36px}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:15px 32px;font-size:.88rem;letter-spacing:.09em;text-transform:uppercase;border-radius:2px;transition:.25s;cursor:pointer}
+  .btn-solid{background:var(--copper);color:#fff}
+  .btn-solid:hover{background:var(--copper-dark)}
+  .btn-ghost{border:1px solid var(--ink);color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--cream)}
+
+  /* CSS-drawn television */
+  .tv-scene{position:relative;display:flex;justify-content:center}
+  .tv{width:100%;max-width:460px;aspect-ratio:16/10;background:var(--ink);border-radius:8px;padding:14px 14px 26px;box-shadow:0 30px 60px -20px rgba(43,35,32,.45);position:relative}
+  .tv-screen{width:100%;height:100%;border-radius:4px;background:linear-gradient(135deg,#3E322B 0%,#6B4E37 42%,#B46A3B 78%,#E0A46E 100%);position:relative;overflow:hidden}
+  .tv-screen::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(255,255,255,.18),transparent 55%)}
+  .tv-badge{position:absolute;bottom:7px;left:50%;transform:translateX(-50%);font-size:.55rem;letter-spacing:.3em;color:#A89684;text-transform:uppercase}
+  .tv-stand{width:130px;height:10px;margin:0 auto;background:var(--ink);border-radius:0 0 8px 8px}
+  .float-tag{position:absolute;background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:10px 16px;font-size:.78rem;letter-spacing:.05em;color:var(--ink-soft);box-shadow:0 10px 24px -10px rgba(43,35,32,.25)}
+  .float-tag strong{color:var(--ink);display:block;font-size:.85rem}
+  .tag-1{top:6%;left:-4%}
+  .tag-2{bottom:10%;right:-3%}
+
+  /* ---------- Sections ---------- */
+  section{padding:96px 0}
+  .sec-head{max-width:640px;margin-bottom:60px}
+  .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .sec-head.center .eyebrow{justify-content:center}
+  .sec-head.center .eyebrow::after{content:"";width:34px;height:1px;background:var(--copper)}
+  h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1.2;margin-bottom:16px}
+  .sec-head p{color:var(--ink-soft);font-size:1rem}
+
+  /* Services — editorial numbered rows */
+  .services{background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .svc-row{display:grid;grid-template-columns:90px 1fr 1.2fr;gap:30px;padding:38px 0;border-bottom:1px solid var(--line);align-items:start;transition:background .3s}
+  .svc-row:last-child{border-bottom:0}
+  .svc-row:hover{background:rgba(180,106,59,.05)}
+  .svc-num{font-family:var(--serif);font-size:1.6rem;color:var(--copper);font-style:italic}
+  .svc-row h3{font-family:var(--serif);font-weight:400;font-size:1.4rem;margin-bottom:6px}
+  .svc-row .kicker{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+  .svc-row p{color:var(--ink-soft);font-size:.96rem}
+
+  /* Trust / stats band */
+  .stats{background:var(--ink);color:var(--cream)}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center}
+  .stat .num{font-family:var(--serif);font-size:clamp(2rem,4vw,2.9rem);color:#E0A46E;display:block;margin-bottom:6px}
+  .stat .lbl{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#BFB2A4}
+
+  /* Process */
+  .proc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:44px}
+  .proc-card{border-top:2px solid var(--copper);padding-top:24px}
+  .proc-step{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--copper);margin-bottom:12px}
+  .proc-card h3{font-family:var(--serif);font-weight:400;font-size:1.25rem;margin-bottom:10px}
+  .proc-card p{color:var(--ink-soft);font-size:.94rem}
+
+  /* Quote */
+  .quote{background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}
+  .quote blockquote{font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,2.6vw,1.9rem);line-height:1.45;max-width:760px;margin:0 auto 22px}
+  .quote cite{font-style:normal;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+
+  /* CTA */
+  .cta{text-align:center}
+  .cta h2{margin-bottom:14px}
+  .cta p{color:var(--ink-soft);max-width:520px;margin:0 auto 34px}
+
+  /* Footer */
+  footer{background:var(--ink);color:#CBBFB2;padding:70px 0 34px;font-size:.9rem}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:44px;padding-bottom:50px;border-bottom:1px solid #42372F}
+  .foot-logo{font-family:var(--serif);font-size:1.3rem;color:var(--cream);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .foot-logo .logo-mark{border-color:#E0A46E}
+  .foot-logo .logo-mark::after{background:#E0A46E}
+  footer h4{color:var(--cream);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:18px;font-weight:600}
+  footer ul{list-style:none}
+  footer li{margin-bottom:10px}
+  footer a:hover{color:#E0A46E}
+  .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:28px;font-size:.78rem;color:#8F8275}
+
+  /* Reveal animation */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.visible{opacity:1;transform:none}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:48px}
+    .hero{padding:126px 0 70px}
+    .stats-grid{grid-template-columns:repeat(2,1fr)}
+    .proc-grid{grid-template-columns:1fr;gap:32px}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .svc-row{grid-template-columns:60px 1fr;gap:18px}
+    .svc-row p{grid-column:2}
+    .tag-1{left:0}.tag-2{right:0}
+  }
+  @media(max-width:640px){
+    .nav-links{position:fixed;inset:72px 0 auto 0;background:var(--paper);flex-direction:column;gap:0;padding:12px 24px 24px;border-bottom:1px solid var(--line);transform:translateY(-130%);transition:transform .35s ease;align-items:stretch}
+    .nav-links.open{transform:none}
+    .nav-links a{padding:14px 0;border-bottom:1px solid var(--line)}
+    .nav-cta{text-align:center;margin-top:16px}
+    .burger{display:block}
+    .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .burger.open span:nth-child(2){opacity:0}
+    .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    section{padding:70px 0}
+    .foot-grid{grid-template-columns:1fr}
+    .float-tag{display:none}
+    .stats-grid{grid-template-columns:1fr 1fr;gap:26px}
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="#top" class="logo"><span class="logo-mark"></span>Halden Screenworks</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#services">Services</a>
+      <a href="#craft">Our Craft</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="nav-cta">Book a Consultation</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <div class="eyebrow">Home Television Studio · Est. 2014</div>
+        <h1>The picture deserves <em>a stage.</em></h1>
+        <p class="lede">We design, calibrate and install televisions and viewing rooms for people who notice the details — from colour-accurate panels to furniture-aware placement and tidy, hidden cabling.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-solid">Plan Your Viewing Room</a>
+          <a href="#services" class="btn btn-ghost">Explore Services</a>
+        </div>
+      </div>
+      <div class="tv-scene reveal">
+        <div>
+          <div class="tv">
+            <div class="tv-screen"></div>
+            <span class="tv-badge">Halden · Series H</span>
+          </div>
+          <div class="tv-stand"></div>
+        </div>
+        <div class="float-tag tag-1"><strong>Colour calibrated</strong>per room lighting</div>
+        <div class="float-tag tag-2"><strong>Installed &amp; tidied</strong>same-visit setup</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">What we do</div>
+        <h2>Four disciplines, one viewing experience</h2>
+        <p>Every project is handled end to end by the same small team — so the advice you get at the start matches what's on your wall at the end.</p>
+      </div>
+      <div class="reveal">
+        <div class="svc-row">
+          <div class="svc-num">01</div>
+          <div><h3>Television Curation</h3><div class="kicker">Selection &amp; Sizing</div></div>
+          <p>We assess your room's light, seating distance and layout, then shortlist panels from our catalogue that genuinely suit the space — no upselling sizes that overwhelm it.</p>
+        </div>
+        <div class="svc-row">
+          <div class="svc-num">02</div>
+          <div><h3>Picture Calibration</h3><div class="kicker">Colour &amp; Motion</div></div>
+          <p>Each screen is tuned in your home, not in a showroom. We adjust colour temperature, gamma and motion handling so evening films and daytime broadcasts both look natural.</p>
+        </div>
+        <div class="svc-row">
+          <div class="svc-num">03</div>
+          <div><h3>Wall &amp; Room Installation</h3><div class="kicker">Mounting &amp; Cabling</div></div>
+          <p>Stud-safe mounting, concealed cable runs and soundbar or speaker pairing. We leave the room cleaner than we found it, and we walk you through every input before we go.</p>
+        </div>
+        <div class="svc-row">
+          <div class="svc-num">04</div>
+          <div><h3>The Screenworks Care Plan</h3><div class="kicker">Ongoing Support</div></div>
+          <p>An annual visit to re-check calibration, update settings, inspect mounts and answer questions. Members also get priority scheduling and a direct line to your installer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="wrap">
+      <div class="stats-grid reveal">
+        <div class="stat"><span class="num" data-count="11">0</span><span class="lbl">Years in business</span></div>
+        <div class="stat"><span class="num" data-count="8400" data-suffix="+">0</span><span class="lbl">Rooms completed</span></div>
+        <div class="stat"><span class="num" data-count="26">0</span><span class="lbl">Certified installers</span></div>
+        <div class="stat"><span class="num" data-count="4.8" data-decimal="1">0</span><span class="lbl">Average review score</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section id="craft">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <div class="eyebrow">Our craft</div>
+        <h2>Founded by two broadcast engineers who missed good pictures</h2>
+        <p>Halden Screenworks began in a Bristol workshop in 2014, after founders Nora Halden and Elias Rowe grew tired of seeing superb panels ruined by bright walls, wrong sizes and factory settings. A decade on, our approach hasn't changed: measure the room first, choose the screen second, and tune everything by eye and instrument on the day.</p>
+      </div>
+      <div class="proc-grid reveal">
+        <div class="proc-card">
+          <div class="proc-step">Principle</div>
+          <h3>The room leads</h3>
+          <p>Lighting, wall colour and seating decide the specification. We design around your home rather than asking your home to work around a television.</p>
+        </div>
+        <div class="proc-card">
+          <div class="proc-step">Principle</div>
+          <h3>Honest guidance</h3>
+          <p>If a smaller, simpler screen is the right answer, that's what we recommend. Our quotes itemise everything, and we explain why each element is there.</p>
+        </div>
+        <div class="proc-card">
+          <div class="proc-step">Principle</div>
+          <h3>Finished means finished</h3>
+          <p>Cables hidden, settings labelled, remotes paired, household shown how it works. A job isn't signed off until everyone in the home is comfortable with it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="quote">
+    <div class="wrap reveal">
+      <blockquote>“We spent years selling televisions. Halden Screenworks is the company we wished we could send people to — patient, precise, and completely uninterested in overselling.”</blockquote>
+      <cite>— Nora Halden, Co-founder</cite>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">How it works</div>
+        <h2>From first call to film night</h2>
+      </div>
+      <div class="proc-grid reveal">
+        <div class="proc-card">
+          <div class="proc-step">Step 01</div>
+          <h3>Room consultation</h3>
+          <p>A free 45-minute visit or video call. We photograph the space, note the light through the day, and talk about how you actually watch — sport, films, gaming, background news.</p>
+        </div>
+        <div class="proc-card">
+          <div class="proc-step">Step 02</div>
+          <h3>Written proposal</h3>
+          <p>Within three working days you receive a shortlist of screens, mount options and an itemised quote. No pressure, no expiry countdown — take the time you need.</p>
+        </div>
+        <div class="proc-card">
+          <div class="proc-step">Step 03</div>
+          <h3>Installation day</h3>
+          <p>Our two-person team fits, calibrates, conceals and demonstrates. Most homes are finished in a single visit, and we return after two weeks for a free follow-up check.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contact">
+    <div class="wrap reveal">
+      <h2>Let's look at your room together</h2>
+      <p>Book a consultation and get straightforward advice on the screen, size and setup that suit your home. There's no obligation to proceed.</p>
+      <a href="mailto:hello@haldenscreenworks.example" class="btn btn-solid">Request a Consultation</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo"><span class="logo-mark"></span>Halden Screenworks</div>
+        <p>Television design, calibration and installation for the home. Serving the greater Bristol area and shipping curated screens nationwide.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Television Curation</a></li>
+          <li><a href="#services">Picture Calibration</a></li>
+          <li><a href="#services">Wall Installation</a></li>
+          <li><a href="#services">Care Plan</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#craft">Our Craft</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="mailto:hello@haldenscreenworks.example">hello@haldenscreenworks.example</a></li>
+          <li><a href="tel:+441179460125">+44 117 946 0125</a></li>
+          <li>Unit 7, Feeder Road Studios<br>Bristol, BS2 0TQ<br>United Kingdom</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Halden Screenworks Ltd. All rights reserved.</span>
+      <span>Registered in England &amp; Wales · Company No. 09284517</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var header=document.getElementById('header');
+  var burger=document.getElementById('burger');
+  var navLinks=document.getElementById('navLinks');
+
+  window.addEventListener('scroll',function(){
+    header.classList.toggle('scrolled',window.scrollY>10);
+  },{passive:true});
+
+  burger.addEventListener('click',function(){
+    var open=navLinks.classList.toggle('open');
+    burger.classList.toggle('open',open);
+    burger.setAttribute('aria-expanded',open?'true':'false');
+  });
+  navLinks.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){
+      navLinks.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+    }
+  });
+
+  var revealEls=document.querySelectorAll('.reveal');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('visible');io.unobserve(en.target);}
+    });
+  },{threshold:.15});
+  revealEls.forEach(function(el){io.observe(el);});
+
+  var counters=document.querySelectorAll('[data-count]');
+  var cio=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting)return;
+      var el=en.target;
+      cio.unobserve(el);
+      var target=parseFloat(el.getAttribute('data-count'));
+      var decimals=parseInt(el.getAttribute('data-decimal')||'0',10);
+      var suffix=el.getAttribute('data-suffix')||'';
+      var start=null,dur=1400;
+      function tick(ts){
+        if(!start)start=ts;
+        var p=Math.min((ts-start)/dur,1);
+        var eased=1-Math.pow(1-p,3);
+        var val=target*eased;
+        el.textContent=(decimals?val.toFixed(decimals):Math.floor(val).toLocaleString('en-GB'))+suffix;
+        if(p<1)requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  },{threshold:.4});
+  counters.forEach(function(el){cio.observe(el);});
+})();
+</script>
+
+</body>
+</html>
